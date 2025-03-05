@@ -28,6 +28,7 @@ def pipeline():
         top_percent=TOP_PERCENT
     )
     migration_map.save("migration_map_py.html")
+    print('Запуск завершен. Проверьте файл migration_map_py.html')
 
 if __name__ == "__main__":
     pipeline()
