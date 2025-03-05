@@ -1,26 +1,38 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools<=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
+[project]
 name = "migration-model"
 version = "0.1.0"
 description = "Population migration prediction system"
-authors = ["Bashirov Roman <bashiroff.roman@gmail.com>"]
-license = "MIT"
+authors = [
+    {name = "Bashirov Roman", email = "bashiroff.roman@gmail.com"}
+]
+license = {text = "MIT"}
+requires-python = "<=3.12"
+dependencies = [
+    "scikit-learn<=1.6.1",
+    "pandas<=1.5.3",
+    "numpy<=1.26.4",
+    "geopandas<=1.0.1",
+    "osmnx<=2.0.1",
+    "folium<=0.19.5",
+    "joblib<=1.4.2",
+    "networkx<=3.0
+    "branca<=0.8.1",
+    "geopy<=2.4.1",
+    "matplotlib<=3.10.1",
+    "shapely<=2.0.7",
+    "pyproj<=3.7.1"
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-scikit-learn = "^1.6.1"
-pandas = "^1.5.3"
-numpy = "^1.26.4"
-geopandas = "^1.0.1"
-osmnx = "^2.0.1"
-folium = "^0.19.5"
-joblib = "^1.4.2"
-networkx = "^3"
-branca = "^0.8.1"
-geopy = "^2.4.1"
-matplotlib = "^3.10.1"
-shapely = "^2.0.7"
-pyproj = "^3.7.1"
+[project.optional-dependencies]
+dev = [
+    "pytest<=7.0",
+    "black<=23.0",
+    "flake8<=6.0"
+]
+
+[tool.setuptools.packages]
+find = {}
