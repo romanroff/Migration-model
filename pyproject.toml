@@ -24,7 +24,8 @@ dependencies = [
     "geopy<=2.4.1",
     "matplotlib<=3.10.1",
     "shapely<=2.0.7",
-    "pyproj<=3.7.1"
+    "pyproj<=3.7.1",
+    "IPython<=9.0.1"
 ]
 
 [project.optional-dependencies]
