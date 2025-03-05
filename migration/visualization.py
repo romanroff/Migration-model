@@ -39,7 +39,7 @@ def create_migration_graph(df, df_coords, top_percent=100,
     # Нормализуем значения предсказаний (логарифмируем и нормируем)
     predictions = np.array([G[u][v][label_col] for u, v in G_filtered.edges()])
     predictions_log = np.log1p([G[u][v][label_col] for u, v in G_filtered.edges()])
-    normalizer = QuantileTransformer()
+    normalizer = QuantileTransformer(n_quantiles=10)
     predictions_norm = normalizer.fit_transform(predictions.reshape(-1, 1)).flatten()
 
     # Создаем пользовательскую палитру
