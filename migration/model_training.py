@@ -43,7 +43,6 @@ def evaluate_model(model, test_data: dict) -> pd.DataFrame:
             RMSE(test_labels, predictions),
             MRE(test_labels, predictions),
             MLogRatio(test_labels, predictions),
-            '-'
         ]
     
     return pd.DataFrame(
