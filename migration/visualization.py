@@ -77,16 +77,3 @@ def create_migration_graph(df, df_coords, top_percent=100,
             ).add_to(m)
 
         return m
-
-    # Статическая карта через contextily
-    elif map_type == 'contextily':
-        return EOFError
-        fig, ax = plt.subplots(figsize=figsize)
-        pos_mapped = {node: ctx.project_mercator(lat, lon) for node, (lon, lat) in pos.items()}
-        ctx.add_basemap(ax, source=ctx.providers.Stamen.TonerLite)
-        nx.draw(G_filtered, pos=pos_mapped, ax=ax, with_labels=False, node_size=100, node_color='blue',
-                edge_color=edge_colors, width=2, font_size=10, font_weight='bold')
-        ax.set_xlim(ctx.project_mercator(lat_min, lon_min)[0], ctx.project_mercator(lat_max, lon_max)[0])
-        ax.set_ylim(ctx.project_mercator(lat_min, lon_min)[1], ctx.project_mercator(lat_max, lon_max)[1])
-        plt.title(f'Граф миграции (топ {top_percent}% связей)', fontsize=14)
-        plt.show()
