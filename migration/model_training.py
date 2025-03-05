@@ -48,5 +48,5 @@ def evaluate_model(model, test_data: dict) -> pd.DataFrame:
     
     return pd.DataFrame(
         res, 
-        index=[['Random Forest'] * 6, ['CPC', 'ACC', 'RMSE', 'RE', 'LR', 'DL(train)']]
+        index=[['Random Forest'] * 5, ['CPC', 'ACC', 'RMSE', 'RE', 'LR']]
     )
