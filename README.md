@@ -27,4 +27,4 @@ python train.py
 python validation.py
 ```
 
-Результат можно открыть в `name.html` файле.
+Результат можно открыть в `migration_map_py.html` файле.
