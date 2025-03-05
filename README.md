@@ -5,7 +5,7 @@
 ## Установка
 1. **Клонируйте репозиторий**:
 ```bash
-git clone https://github.com/yourusername/migration-model.git
+git clone https://github.com/romanroff/migration-model.git
 ```
 2. **Создайте и активируйте виртуальное окружение** (рекомендуется):
 ```bash
