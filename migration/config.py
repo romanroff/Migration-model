@@ -1,4 +1,4 @@
-REGION_NAME = "Ростовская область, Россия"
+REGION_NAME = "Ленинградская область, Россия"
 MODEL_PATH = "models/RF/rf_model.joblib"
 DATA_PATH = "data"
 PLACE_FILTERS = {"place": ["city", "town", "village"]}

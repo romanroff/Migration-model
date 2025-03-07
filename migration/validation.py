@@ -19,6 +19,10 @@ def pipeline():
     print('Шаг 3: Прогнозирование')
     model = load_model()
     predictions_df = make_predictions(model, final_df)
+
+    # Сохранение predictions_df в CSV файл
+    print('Сохранение прогнозов в CSV файл')
+    predictions_df.to_csv("predictions.csv", index=False)
     
     # Шаг 4: Визуализация
     print('Шаг 4: Визуализация')
