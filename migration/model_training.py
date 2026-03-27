@@ -2,19 +2,35 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
+from config import FEATURE_COLS
 from metrics import RMSE, MRE, MLogRatio, common_part_of_commuters, common_part_of_commuters_accuracy
 
-def train_and_save_model(train_data: dict, test_data: dict, model_path: str = "models/RF/rf_model.joblib"):
+def train_and_save_model(
+    train_data: dict,
+    test_data: dict,
+    model_path: str = "models/RF/rf_model.joblib",
+    feature_cols: list[str] | None = None,
+    n_estimators: int = 200,
+    random_state: int = 42,
+    verbose: int = 1,
+):
     """Обучение модели и сохранение результатов"""
+    feature_cols = feature_cols or FEATURE_COLS
+
     # Объединение данных
     all_train_data = pd.concat(train_data.values())
     
     # Подготовка фичей и таргета
     train_labels = np.log(np.array(all_train_data['total_pop_flow']))
-    train_features = np.array(all_train_data[['d','m_o','m_d']])
+    train_features = np.array(all_train_data[feature_cols])
     
     # Обучение модели
-    rf = RandomForestRegressor(n_estimators=1000, n_jobs=-1, verbose=1)
+    rf = RandomForestRegressor(
+        n_estimators=n_estimators,
+        n_jobs=-1,
+        verbose=verbose,
+        random_state=random_state,
+    )
     rf.fit(train_features, train_labels)
 
     from pathlib import Path
@@ -24,17 +40,18 @@ def train_and_save_model(train_data: dict, test_data: dict, model_path: str = "m
     joblib.dump(rf, model_path)
     
     # Оценка качества
-    results = evaluate_model(rf, test_data)
+    results = evaluate_model(rf, test_data, feature_cols=feature_cols)
     
     return rf, results
 
-def evaluate_model(model, test_data: dict) -> pd.DataFrame:
+def evaluate_model(model, test_data: dict, feature_cols: list[str] | None = None) -> pd.DataFrame:
     """Оценка модели на тестовых данных"""
+    feature_cols = feature_cols or FEATURE_COLS
     res = {}
     
     for key, df in test_data.items():
         test_labels = np.array(df['total_pop_flow'])
-        test_features = np.array(df[['d','m_o','m_d']])
+        test_features = np.array(df[feature_cols])
         predictions = np.exp(model.predict(test_features))
 
         res[key] = [
