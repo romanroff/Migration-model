@@ -25,7 +25,8 @@ dependencies = [
     "matplotlib<=3.10.1",
     "shapely<=2.0.7",
     "pyproj<=3.7.1",
-    "IPython<=9.0.1"
+    "IPython<=9.0.1",
+    "scikit-mobility"
 ]
 
 [project.optional-dependencies]
